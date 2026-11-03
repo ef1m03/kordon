@@ -25,7 +25,7 @@ Kordon делает Efimov Dev (https://efimovdev.ru). Здесь описано
 Только если вы сами включили:
 
 - **Счётчик пользователей:** раз в день номер версии и система (например, `1.3.1, darwin`). Без IP, без номера установки, без имени компьютера. Журнал адресов на нашем сервере для этого выключен.
-- **Уведомления в Telegram:** текст уведомления без адресов, только со страной, уходит через наш сервер боту @kordon_security_bot. Сервер хранит номер чата и хеш секрета вашего Kordon; сами сообщения не хранятся. Отключить - `/stop` в боте или в панели Kordon.
+- **Уведомления в Telegram:** текст уведомления без адресов, только со страной, уходит через наш сервер боту @kordon_security_bot. Сервер хранит номер чата, хеш секрета вашего Kordon и имя компьютера (чтобы в одном чате различать уведомления с разных компьютеров); сами сообщения не хранятся. Кнопки под уведомлением («Пауза на час», «Разрешить этот IP») работают так: нажатие ждёт на сервере, пока ваш Kordon его заберёт, и сразу удаляется; после уведомления с кнопками Kordon полчаса спрашивает сервер, не нажата ли кнопка. Отключить - `/stop` в боте или в панели Kordon.
 
 Настройки, журнал и статистика лежат только у вас на компьютере. Данные не продаются и не передаются третьим лицам.
 
@@ -53,7 +53,7 @@ Permissions: `storage` (site list), `declarativeNetRequest` (pausing AI sites' r
 
 The app runs on your computer. To know your public IP it asks public services (ipify, icanhazip, ident.me, checkip.amazonaws.com, ipinfo.io), looks up the IP's country and which DNS you use, and every 15 minutes checks for a new version (`efimovdev.ru/kordon/api/latest`, no data sent; GitHub as a fallback).
 
-Only if you turn them on: the **user count** (once a day the version and OS, no IP, no install id; the server keeps no address log for it) and **Telegram alerts** (alert text without addresses, only the country, passed through our server to @kordon_security_bot; the server keeps the chat id and a hash of your Kordon's secret, not the messages).
+Only if you turn them on: the **user count** (once a day the version and OS, no IP, no install id; the server keeps no address log for it) and **Telegram alerts** (alert text without addresses, only the country, passed through our server to @kordon_security_bot; the server keeps the chat id, a hash of your Kordon's secret and the computer's name, not the messages; a pressed button under an alert waits on the server until your Kordon picks it up, and Kordon asks for it for half an hour after such an alert).
 
 Settings, logs and statistics stay on your computer. Data is not sold or shared with third parties.
 
