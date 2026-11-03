@@ -112,7 +112,7 @@ CLI: `kordon panel`, `kordon status`, `kordon allow [IP|subnet|CC]`, `kordon con
 
 ## What goes over the network
 
-Requests: the public IP (`api.ipify.org`, `ipv4.icanhazip.com`, `v4.ident.me`, `checkip.amazonaws.com`, `ipinfo.io/ip`; IPv6: `api6.ipify.org`, `ipv6.icanhazip.com`, `v6.ident.me`; all configurable) and its country (`ipinfo.io`, falling back to `ipapi.co` and `api.country.is`, cached). Opt-in only: a daily `{"v", "os"}` ping for the user count and Telegram alert texts (without addresses) to `efimovdev.ru/kordon/api`. Plus, every 6 hours, one request to `api.github.com` for the latest version number (`update_check: false` turns it off). No analytics.
+Requests: the public IP (`api.ipify.org`, `ipv4.icanhazip.com`, `v4.ident.me`, `checkip.amazonaws.com`, `ipinfo.io/ip`; IPv6: `api6.ipify.org`, `ipv6.icanhazip.com`, `v6.ident.me`; all configurable) and its country (`ipinfo.io`, falling back to `ipapi.co` and `api.country.is`, cached). Opt-in only: a daily `{"v", "os"}` ping for the user count and Telegram alert texts (without addresses) to `efimovdev.ru/kordon/api`. Plus, every 15 minutes, one request to `efimovdev.ru/kordon/api/latest` (a copy of GitHub's latest-release page, no data sent, no address log; `api.github.com` if it doesn't answer) for the latest version number (`update_check: false` turns it off). No analytics.
 
 ## How safe is it
 
