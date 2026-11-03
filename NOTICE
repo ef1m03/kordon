@@ -1,19 +1,17 @@
 Kordon
-Copyright (C) 2026 Efimov Dev - https://efimovdev.ru
+© 2026 Efimov Dev - https://efimovdev.ru
 
-The source code is licensed under the GNU General Public License v3.0, see LICENSE.
-Versions 1.0.0 - 1.2.1 were released under the MIT license and stay available under it.
+Kordon is free, closed-source software: see LICENSE. The name Kordon and the Kordon logo
+belong to Efimov Dev. Official builds come only from https://github.com/ef1m03/kordon/releases.
 
-The name "Kordon" and the Kordon logo are not licensed under the GPL. A modified
-version or a fork must use a different name and logo and must not present itself
-as Kordon or as an official build. Official builds come only from
-https://github.com/ef1m03/kordon/releases and carry a GitHub build attestation.
+Название Kordon и логотип принадлежат Efimov Dev. Официальные сборки - только с
+https://github.com/ef1m03/kordon/releases.
 
-Название Kordon и логотип Kordon не входят в лицензию GPL. Изменённая версия или
-форк должны называться иначе, использовать другой логотип и не выдавать себя за
-Kordon или его официальную сборку. Официальные сборки - только с
-https://github.com/ef1m03/kordon/releases, у каждой есть аттестация сборки GitHub.
-
-Fonts in internal/ui/panel/fonts: Golos Text (Copyright 2019 The Golos Text Project Authors) and
-Unbounded (Copyright 2022 The Unbounded Project Authors), both under the SIL Open Font License 1.1;
-the license texts are next to the font files.
+Third-party components inside Kordon, under their own licenses:
+- fyne.io/systray (Apache-2.0), github.com/webview/webview_go (MIT),
+  github.com/jchv/go-webview2 (MIT), github.com/jchv/go-winloader (ISC),
+  golang.org/x/sys, golang.org/x/text and golang.org/x/image (BSD-3-Clause),
+  github.com/gofrs/flock (BSD-3-Clause), github.com/godbus/dbus/v5 (BSD-2-Clause),
+  gopkg.in/yaml.v3 (MIT, Apache-2.0).
+- Fonts Golos Text (Copyright 2019 The Golos Text Project Authors) and Unbounded
+  (Copyright 2022 The Unbounded Project Authors), SIL Open Font License 1.1.

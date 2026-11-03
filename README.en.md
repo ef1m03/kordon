@@ -4,9 +4,8 @@
 
 <p align="center">
   <a href="https://github.com/ef1m03/kordon/releases/latest"><img src="https://img.shields.io/github/v/release/ef1m03/kordon" alt="release"></a>
-  <a href="https://github.com/ef1m03/kordon/actions/workflows/ci.yml"><img src="https://github.com/ef1m03/kordon/actions/workflows/ci.yml/badge.svg" alt="tests"></a>
   <img src="https://img.shields.io/badge/macOS%20%C2%B7%20Windows%20%C2%B7%20Linux-555" alt="macOS, Windows, Linux">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0-blue" alt="GPL-3.0"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-freeware-blue" alt="freeware"></a>
   · <a href="README.md">Русский</a>
 </p>
 
@@ -67,7 +66,7 @@
 - **Browser extension**: pauses only Claude, ChatGPT, Gemini and other AI tabs, the rest of the browser keeps working; checks WebRTC leaks too. Needs Kordon 1.3+; install `kordon-extension.zip` from the latest release (unpacked, developer mode) until it's in the Chrome Web Store.
 - **Telegram alerts** through the Kordon bot: the VPN dropped, apps paused, apps resumed. No addresses in the messages.
 - **Leak check** in the panel: every IP service on its own, IPv6, DNS country, and the address of programs that ignore the system proxy.
-- No admin rights, nothing sent without your consent (the user count is opt-in), open source.
+- No admin rights, nothing sent without your consent (the user count is opt-in), free. Every build is scanned by VirusTotal and Kaspersky before release; results are in the release notes.
 
 ## Install
 
@@ -113,24 +112,15 @@ CLI: `kordon panel`, `kordon status`, `kordon allow [IP|subnet|CC]`, `kordon con
 
 ## What goes over the network
 
-Requests: the public IP (`api.ipify.org`, `ipv4.icanhazip.com`, `v4.ident.me`, `checkip.amazonaws.com`, `ipinfo.io/ip`; IPv6: `api6.ipify.org`, `ipv6.icanhazip.com`, `v6.ident.me`; all configurable) and its country (`ipinfo.io`, falling back to `ipapi.co` and `api.country.is`, cached). Opt-in only: a daily `{"v", "os"}` ping for the user count and Telegram alert texts (without addresses) to `efimovdev.ru/kordon/api`; the server code is in [`server/`](server/kordon_cloud.py). Plus, every 6 hours, one request to `api.github.com` for the latest version number (`update_check: false` turns it off). No analytics.
+Requests: the public IP (`api.ipify.org`, `ipv4.icanhazip.com`, `v4.ident.me`, `checkip.amazonaws.com`, `ipinfo.io/ip`; IPv6: `api6.ipify.org`, `ipv6.icanhazip.com`, `v6.ident.me`; all configurable) and its country (`ipinfo.io`, falling back to `ipapi.co` and `api.country.is`, cached). Opt-in only: a daily `{"v", "os"}` ping for the user count and Telegram alert texts (without addresses) to `efimovdev.ru/kordon/api`. Plus, every 6 hours, one request to `api.github.com` for the latest version number (`update_check: false` turns it off). No analytics.
 
 ## How safe is it
 
-Covered: IPv6 leaks, child processes, a single lying IP service, missed network changes, Kordon crashing, tampered downloads (installers check SHA-256; every build carries a GitHub attestation: `gh attestation verify <file> --repo ef1m03/kordon`).
+Covered: IPv6 leaks, child processes, a single lying IP service, missed network changes, Kordon crashing, tampered downloads (installers check SHA-256; every release file is scanned by VirusTotal and Kaspersky, with the results in the release notes).
 
 Not covered, honestly: Kordon works at the app level, not the network level - there are milliseconds between a network change and the freeze, so use your VPN's own kill switch too if you need "not a single packet". Admin processes and services aren't touched. Malware on the same machine can just stop Kordon. PAC proxy scripts aren't supported. On Windows, npm-installed Claude Code started from a terminal runs as `node.exe` - use the native installer.
-
-## Build
-
-```bash
-go test ./...
-./scripts/build-mac.sh        # dist/Kordon.app
-./scripts/build-windows.sh    # dist/kordon-windows-*.exe
-CGO_ENABLED=0 go build ./cmd/kordon
-```
 
 ---
 
 <p align="center">© <a href="https://efimovdev.ru/kordon/?utm_source=kordon&utm_medium=github"><b>Efimov Dev</b></a> - <a href="https://efimovdev.ru/kordon/?utm_source=kordon&utm_medium=github">efimovdev.ru</a>. Questions and ideas: Telegram <a href="https://t.me/efimov_dev">@efimov_dev</a>.<br>
-License: <a href="LICENSE">GPL-3.0</a> (versions up to 1.2.1: MIT). The Kordon name and logo are <a href="NOTICE">not covered by the license</a>; official builds only from <a href="https://github.com/ef1m03/kordon/releases">Releases</a> (<code>gh attestation verify &lt;file&gt; --repo ef1m03/kordon</code>).</p>
+Kordon is free, closed-source software (<a href="LICENSE">license</a>; versions 1.0.0-1.2.1 were MIT, 1.2.2 GPL-3.0). The name and logo belong to Efimov Dev; official builds only from <a href="https://github.com/ef1m03/kordon/releases">Releases</a>.</p>
