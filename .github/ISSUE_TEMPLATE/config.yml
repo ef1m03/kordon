@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Идея или вопрос / Idea or question
+    url: https://github.com/ef1m03/kordon/discussions
+    about: Обсуждения - для идей и вопросов / Discussions are for ideas and questions
+  - name: Поддержка в Telegram / Telegram support
+    url: https://t.me/kordon_security_bot?start=support
+    about: Быстрый ответ в боте Kordon / A quick answer in the Kordon bot

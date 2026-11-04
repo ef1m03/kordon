@@ -27,7 +27,7 @@ English below.
 - для пульта, только пока вы вошли: статус защиты, страну, имена защищаемых программ, что делают агенты, недельные цифры - **без IP-адресов**, в памяти;
 - последний профиль настроек для переноса на новый компьютер - без адресов и сетей.
 
-Журнал доступа на сервере выключен: он не знает, с какого адреса к нему обращались. Ограничение частоты запросов держится только в памяти nginx и ничего не пишет. Ежедневный бэкап базы уходит владельцу Kordon.
+Сервер Kordon стоит отдельно (Амстердам). Вход, пульт и уведомления вашего IP не получают вовсе: запросы к ним проходят через сайт efimovdev.ru, у которого журнал доступа для Kordon выключен. IP видят только наши проверки `ip.kordon.tech` и `stun.kordon.tech` - ровно затем, чтобы назвать его вам в ответ; журнала у них нет, адрес нигде не сохраняется. Проверка DNS `dns.kordon.tech` вашего IP не видит вовсе: к ней приходит ваш DNS-сервер (провайдера, VPN или публичный), и его адрес она так же только называет в ответ. Ограничение частоты запросов держится только в памяти nginx и ничего не пишет. Ежедневный бэкап базы уходит владельцу Kordon.
 
 ## Вход через Telegram
 
@@ -58,7 +58,7 @@ shasum -a 256 -c SHA256SUMS.txt --ignore-missing
 
 - **On the computer:** no admin rights; the panel talks to Kordon on `127.0.0.1` with a random key in a user-only file, and checks the host, the key and the origin (DNS rebinding and CSRF); the browser extension answers only to extensions; secrets on disk are `0600`.
 - **Beyond a plain kill switch:** apps are paused right before the computer sleeps and let go only after a fresh IP check on waking; if Kordon crashes or is killed, a watchdog pauses the protected apps until it's back; IPv6, DNS, WebRTC, proxy-bypass and per-service route checks; `kordon run` for a single command on a server or in CI.
-- **Our server** knows the Telegram chat id, a SHA-256 hash of each computer's secret, the computer's name, and - for the remote, while signed in - status, country, protected app names and weekly numbers, in memory, **never IP addresses**. No access log; rate limiting lives in nginx memory only.
+- **Our server** knows the Telegram chat id, a SHA-256 hash of each computer's secret, the computer's name, and - for the remote, while signed in - status, country, protected app names and weekly numbers, in memory, **never IP addresses**. Kordon's server runs on its own (Amsterdam). Sign in, the remote and alerts never get your IP: requests reach them through efimovdev.ru, which keeps no access log for Kordon; rate limiting lives in nginx memory only. Only our checks `ip.kordon.tech` and `stun.kordon.tech` see the address - to say it back to you; they keep no log and store it nowhere. The DNS check `dns.kordon.tech` never sees your IP at all: your DNS server (the provider's, the VPN's or a public one) is what asks it, and it only says that server's address back.
 - **Sign in:** an Ed25519-signed ticket from the server, valid 7 days, refreshed every 6 hours, checked against a key built into the app.
 - **Updates:** `SHA256SUMS.txt` is signed with an Ed25519 key only the owner holds; Kordon installs nothing without a valid signature, even if the GitHub account were taken over. Every release is built on GitHub Actions, not on someone's computer. macOS builds are Developer ID signed; Apple's notarization comes with the next version. Verify a release yourself (OpenSSL 3):
 

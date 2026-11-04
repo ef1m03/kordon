@@ -1,0 +1,28 @@
+name: Ошибка / Bug
+description: Kordon работает не так, как ожидалось / Kordon doesn't work as expected
+labels: [bug]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Система и версия Kordon / OS and Kordon version
+      description: Версия видна в окне Kordon внизу или в меню / shown at the bottom of the Kordon window
+      placeholder: macOS 15.3, Kordon 1.4.0
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: Что случилось / What happened
+      description: По шагам, если можно / Step by step if you can
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Что ожидали / What you expected
+  - type: textarea
+    id: logs
+    attributes:
+      label: Скриншот или журнал / Screenshot or log
+      description: Меню Kordon → «Открыть журнал». IP-адреса там уже скрыты, но проверьте перед отправкой / Kordon menu → Open log. IP addresses are masked, still check before sending

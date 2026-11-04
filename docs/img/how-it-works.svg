@@ -16,7 +16,7 @@
   <text x="88" y="154" font-size="17" font-weight="700" fill="#f1f5f9">Всё в порядке</text>
   <rect x="58" y="176" width="204" height="34" rx="17" fill="#0f172a"/>
   <circle cx="78" cy="193" r="6" fill="#16a34a"/>
-  <text x="92" y="198" font-size="14" fill="#e2e8f0">🇳🇱 64.137.54.87</text>
+  <text x="92" y="198" font-size="14" fill="#e2e8f0">🇳🇱 203.0.113.42</text>
   <g font-size="13.5" fill="#94a3b8">
     <text x="58" y="242">VPN включён, IP разрешён.</text>
     <text x="58" y="264">Claude работает как обычно,</text>

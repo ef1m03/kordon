@@ -32,21 +32,47 @@ $name = "kordon-windows-$arch.exe"
 New-Item -ItemType Directory -Force $dir | Out-Null
 Write-Host 'Скачиваю Kordon…'
 $tmp = Join-Path $env:TEMP "kordon-$PID.exe"
-Invoke-WebRequest "$base/$name" -OutFile $tmp -UseBasicParsing
-
-# Compare with the release's SHA256SUMS.txt: a damaged or swapped file is never installed.
 $sumsFile = "$tmp.sums"
-Invoke-WebRequest "$base/SHA256SUMS.txt" -OutFile $sumsFile -UseBasicParsing
-$line = Get-Content $sumsFile | Where-Object { $_ -match ('  ' + [regex]::Escape($name) + '$') }
-$want = if ($line) { ($line -split '\s+')[0] } else { '' }
-$got = (Get-FileHash $tmp -Algorithm SHA256).Hash.ToLower()
-Remove-Item $sumsFile -Force
-if (-not $want -or $want -ne $got) {
-    Remove-Item $tmp -Force
-    throw "Контрольная сумма $name не совпала - файл повреждён или подменён, ничего не установлено."
+# Defender (or another antivirus) may take the fresh, unsigned .exe away while
+# it's being saved or read: say what it is and what to do, not a red trace.
+function Test-AvBlock($err) {
+    $m = "$($err.Exception.Message)"
+    return ($err.Exception.HResult -in -2147024671, -2147024670) -or ($m -match 'вирус|virus|нежелательн|unwanted')
 }
-Move-Item $tmp $exe -Force
-Unblock-File $exe
+try {
+    Invoke-WebRequest "$base/$name" -OutFile $tmp -UseBasicParsing
+    # Compare with the release's SHA256SUMS.txt: a damaged or swapped file is never installed.
+    Invoke-WebRequest "$base/SHA256SUMS.txt" -OutFile $sumsFile -UseBasicParsing
+    $line = Get-Content $sumsFile | Where-Object { $_ -match ('  ' + [regex]::Escape($name) + '$') }
+    $want = if ($line) { ($line -split '\s+')[0] } else { '' }
+    $got = (Get-FileHash $tmp -Algorithm SHA256).Hash.ToLower()
+    if (-not $want -or $want -ne $got) {
+        Write-Host "Контрольная сумма $name не совпала - файл повреждён или подменён, ничего не установлено." -ForegroundColor Red
+        return
+    }
+    Move-Item $tmp $exe -Force
+    Unblock-File $exe
+} catch {
+    if (Test-AvBlock $_) {
+        Write-Host ''
+        Write-Host 'Антивирус Windows заблокировал файл Kordon.' -ForegroundColor Yellow
+        Write-Host 'Это ложное срабатывание: сборка для Windows пока без сертификата подписи, а Kordon ставит другие программы на паузу - так антивирусы оценивают незнакомые программы.'
+        Write-Host ''
+        Write-Host 'Что сделать:'
+        Write-Host '  1. Безопасность Windows -> Защита от вирусов и угроз -> Журнал защиты.'
+        Write-Host '  2. Запись про kordon -> Действия -> Разрешить на устройстве.'
+        Write-Host '  3. Запустите эту команду ещё раз.'
+        Write-Host ''
+        Write-Host 'Проверить файл самому: https://github.com/ef1m03/kordon#официальные-сборки-и-проверки'
+        Write-Host 'Вопросы - в боте: https://t.me/kordon_security_bot'
+        return
+    }
+    Write-Host "Не получилось скачать Kordon: $($_.Exception.Message)" -ForegroundColor Red
+    Write-Host 'Проверьте интернет и запустите команду ещё раз. Не выходит - напишите в бот: https://t.me/kordon_security_bot'
+    return
+} finally {
+    Remove-Item $sumsFile, $tmp -Force -ErrorAction SilentlyContinue
+}
 
 $sh = New-Object -ComObject WScript.Shell
 $s = $sh.CreateShortcut($lnk)

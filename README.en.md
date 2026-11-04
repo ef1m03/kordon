@@ -17,7 +17,7 @@
   <tr>
     <td width="33%"><img src="docs/img/tray-ok.png" alt="Kordon tray window: protection is on"><p align="center"><b>All good</b><br><sub>country and IP, protected apps, one-click actions</sub></p></td>
     <td width="33%"><img src="docs/img/tray-frozen.png" alt="Kordon tray window: apps are paused"><p align="center"><b>The VPN dropped</b><br><sub>apps paused, a ring counts down to closing</sub></p></td>
-    <td width="33%"><img src="docs/img/tray-update.png" alt="Kordon tray window: an update"><p align="center"><b>A new version</b><br><sub>what's new and an Update button</sub></p></td>
+    <td width="33%"><img src="docs/img/tray-split.png" alt="Kordon tray window: split routing"><p align="center"><b>Split routing</b><br><sub>some sites go around the VPN, Claude and ChatGPT go through it: their servers confirmed it</sub></p></td>
   </tr>
 </table>
 
@@ -47,6 +47,10 @@
 
 ## What it does
 
+- **Kordon Cloud - you're connected.** Once signed in, the window says "Kordon Cloud connected", and the panel shows what exactly works: sign in confirmed by a signed pass, the remote and Telegram alerts in touch, only signed updates installed, no IP addresses kept by the cloud. The protection itself lives on your computer and works offline and without the cloud.
+- **Split routing.** If your VPN sends some sites direct (roscomvpn-routing and the like), the IP checkers disagree. Kordon asks the servers of Claude, ChatGPT, Codex and Perplexity themselves which address they see - every 15 seconds and right after a network change. Their server sees the VPN - the app runs; it sees your home address - the app pauses.
+- **Your choice of IP check services.** The panel (Leak check → Service answers) shows what each service sees; tick the ones that take part in the check.
+- **Alerts without noise.** A VPN that blinks and comes back within half a minute is one quiet "the VPN blinked for 8 s", not two messages. The same leak comes at most once a day. You choose what to get: `/notify` in the bot, a button under any alert, the remote or "Choose" in Kordon.
 - **The tray window**: click the icon and see what matters: protection, country, IP, which apps are protected. Pause, check the IP, allow the country or trust this network in one click. It opens instantly and follows the system's light or dark look.
 - **The Kordon panel**: a real window with status, apps, rules, networks, statistics, history and every setting. No file editing.
 - **Per-app rules**: Claude only from the Netherlands, Cursor from the EU and US. Groups work independently.
@@ -70,7 +74,7 @@
 - Pause, event history, a screen-sharing mode that hides the IP, hot-reloaded `config.yaml`.
 - **First start in two clicks**: the window asks whether the address is the VPN's and offers to protect AI apps that are already running.
 - **Browser extension**: pauses only Claude, ChatGPT, Gemini and other AI tabs, the rest of the browser keeps working; checks WebRTC leaks too. Needs Kordon 1.3+; install `kordon-extension.zip` from the latest release (unpacked, developer mode) until it's in the Chrome Web Store.
-- **Telegram: sign in, remote and alerts.** Kordon is free; the one thing we ask is to sign in once with [@kordon_security_bot](https://t.me/kordon_security_bot) (a QR code for the phone is in the window; on a server - `kordon login`). Protection works without signing in. In return: **"Claude Code is waiting for you"** when a terminal agent (Claude Code, Codex, Gemini CLI, Copilot CLI) went quiet while you're away; VPN alerts with buttons (pause for an hour, allow this IP or country); a **remote** mini app with all your computers, their status and pause buttons; a weekly report; settings that move to a new computer (never IP addresses or home networks). Sign-in is confirmed by a server-signed ticket valid for a week, so Kordon keeps working offline.
+- **Telegram: sign in, remote and alerts.** Kordon is free; the one thing we ask is to sign in once with [@kordon_security_bot](https://t.me/kordon_security_bot) (a QR code for the phone is in the window; on a server - `kordon login`). Protection works without signing in. In return: **"Claude Code is waiting for you"** when a terminal agent (Claude Code, Codex, Gemini CLI, Copilot CLI) went quiet while you're away; VPN alerts with buttons (pause for an hour, allow this IP or country); a **remote** mini app with all your computers, their status, how the VPN held up this week, the speed to the AI services, pause buttons and alert switches; a quiet "the VPN blinked" for short drops and `/notify` to choose which alerts come; a weekly report; settings that move to a new computer (never IP addresses or home networks). Sign-in is confirmed by a server-signed ticket valid for a week, so Kordon keeps working offline.
 - **The route to the AI services themselves**: some VPNs send certain domains around the tunnel. Kordon asks `api.anthropic.com`, `chatgpt.com` and others which address they see, and pauses the app if it isn't allowed - even when the "general" IP is right.
 - **Leak check** in the panel: every IP service on its own, IPv6, DNS country, and the address of programs that ignore the system proxy.
 - No admin rights, free. The Mac build is signed with an Apple Developer ID certificate (Apple's notarization comes with the next version); every build is scanned by VirusTotal and Kaspersky before release (results in the release notes) and the tray window is started on a real Windows before every release.
@@ -105,7 +109,7 @@ custom_apps:
   - name: "My client"
     match: ["/MyClient.app/", "myclient.exe", "args:my-tool/cli.js"]
 allow:
-  ips: ["64.137.54.87", "185.12.40.0/24"]
+  ips: ["203.0.113.42", "185.12.40.0/24"]
   countries: ["NL", "DE"]
 grace: 20s
 close_timeout: 5s
@@ -119,13 +123,13 @@ CLI: `kordon panel`, `kordon status`, `kordon allow [IP|subnet|CC]`, `kordon con
 
 ## What goes over the network
 
-Requests: the public IP (`api.ipify.org`, `ipv4.icanhazip.com`, `v4.ident.me`, `checkip.amazonaws.com`, `ipinfo.io/ip`; IPv6: `api6.ipify.org`, `ipv6.icanhazip.com`, `v6.ident.me`; all configurable) and its country (`ipinfo.io`, falling back to `ipapi.co` and `api.country.is`, cached). Every 2 minutes, for protected apps only, `/cdn-cgi/trace` on `api.anthropic.com`, `claude.ai`, `chatgpt.com`, `api.openai.com`, `www.perplexity.ai` - the address and country the service sees (`route_check: false` turns it off). Signing in with Telegram is required: the server keeps the chat number, a hash of your Kordon's secret and the computer's name; while signed in, Kordon reports every 15 seconds for the remote the protection status, country, protected app names, what agents are doing and the week's numbers - no IP addresses, kept in memory only; the last settings profile (apps, countries, switches, no addresses) is kept for moving to a new computer. Plus, every 15 minutes, one request to `efimovdev.ru/kordon/api/latest` (a copy of GitHub's latest-release page, no data sent, no address log; `api.github.com` if it doesn't answer) for the latest version number (`update_check: false` turns it off). No analytics, no IP addresses on our server.
+Requests: the public IP (first Kordon's own `ip.kordon.tech`, which says back the address it was reached from and logs nothing, then `api.ipify.org`, `ipv4.icanhazip.com`, `v4.ident.me`, `checkip.amazonaws.com`, `ipinfo.io/ip`; IPv6: `api6.ipify.org`, `ipv6.icanhazip.com`, `v6.ident.me`; all configurable) and its country (`ipinfo.io`, falling back to `ipapi.co` and `api.country.is`, cached). The DNS resolver: one lookup of a random name in Kordon's own `dns.kordon.tech`, which answers with the address of the resolver that asked (it sees your DNS server, not your computer, and logs nothing), then `whoami.akamai.net` if it doesn't answer (`dns_check: off` turns it off). Every 2 minutes, for protected apps only, `/cdn-cgi/trace` on `api.anthropic.com`, `claude.ai`, `chatgpt.com`, `api.openai.com`, `www.perplexity.ai` - the address and country the service sees (`route_check: false` turns it off). Signing in with Telegram is required: the server keeps the chat number, a hash of your Kordon's secret and the computer's name; while signed in, Kordon reports every 15 seconds for the remote the protection status, country, protected app names, what agents are doing and the week's numbers - no IP addresses, kept in memory only; the last settings profile (apps, countries, switches, no addresses) is kept for moving to a new computer. Plus, every 15 minutes, one request to `efimovdev.ru/kordon/api/latest` (a copy of GitHub's latest-release page, no data sent, no address log; `api.github.com` if it doesn't answer) for the latest version number (`update_check: false` turns it off). No analytics, no IP addresses on our server.
 
 ## How safe is it
 
 Covered: IPv6 leaks, child processes, a single lying IP service, missed network changes, Kordon crashing, tampered downloads (installers check SHA-256; every release file is scanned by VirusTotal and Kaspersky, with the results in the release notes).
 
-Not covered, honestly: Kordon works at the app level, not the network level - there are milliseconds between a network change and the freeze, so use your VPN's own kill switch too if you need "not a single packet". Admin processes and services aren't touched. Malware on the same machine can just stop Kordon. PAC proxy scripts aren't supported. On Windows, npm-installed Claude Code started from a terminal runs as `node.exe` - use the native installer.
+Not covered, honestly: Kordon works at the app level, not the network level - there are milliseconds between a network change and the freeze, so use your VPN's own kill switch too if you need "not a single packet". Admin processes and services aren't touched. Malware on the same machine can just stop Kordon. PAC proxy scripts count only for the route to the AI services (each is asked through the proxy the script picks for it); the main public IP check uses the regular system proxy. On Windows, npm-installed Claude Code started from a terminal runs as `node.exe` - use the native installer.
 
 ---
 
