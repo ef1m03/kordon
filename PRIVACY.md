@@ -10,13 +10,13 @@ Kordon делает Efimov Dev (https://efimovdev.ru). Здесь описано
 
 Что оно делает и зачем:
 
-- **Спрашивает приложение Kordon на вашем компьютере** (`http://127.0.0.1:47833`), разрешён ли сейчас ваш внешний IP. Это запрос внутри компьютера, в интернет он не уходит. В ответе - состояние защиты, текущий IP и страна, их расширение показывает в своём окне.
+- **Спрашивает приложение Kordon на вашем компьютере** (`http://127.0.0.1:47833`, а если этот порт занят - запасные `41833`, `35833` и `29833`), разрешён ли сейчас ваш внешний IP. Это запрос внутри компьютера, в интернет он не уходит. В ответе - состояние защиты, текущий IP и страна, их расширение показывает в своём окне.
 - **Ставит на паузу вкладки ИИ-сайтов** (claude.ai, chatgpt.com, gemini.google.com и другие из списка), когда приложение Kordon говорит, что IP не тот: блокирует их сетевые запросы правилами браузера (declarativeNetRequest) и показывает поверх страницы заглушку. Содержимое страниц расширение не читает и не меняет.
 - **Хранит в браузере только ваш список сайтов** (какие выключены и какие вы добавили) - в `chrome.storage.local`, на вашем компьютере.
 - **Проверка WebRTC** по вашей кнопке узнаёт у STUN-сервера Kordon (`stun.kordon.tech`, ничего не записывает), а если он не ответил - у публичного STUN-сервера Google (`stun.l.google.com`), какой адрес браузер выдаёт сайтам, и сравнивает его с IP. Результат показывается только вам.
 - **«Закрыть утечку»** по вашей кнопке меняет настройку браузера WebRTC (`webRTCIPHandlingPolicy`), чтобы браузер не выдавал адрес в обход прокси и VPN. «Вернуть как было» отменяет это.
 
-Разрешения: `storage` - список сайтов; `declarativeNetRequest` - пауза запросов ИИ-сайтов; `alarms` - раз в 30 секунд сверять состояние; `privacy` - настройка WebRTC по вашей кнопке; доступ к `127.0.0.1:47833` - связь с приложением Kordon; доступ к ИИ-сайтам из списка - пауза их вкладок.
+Разрешения: `storage` - список сайтов; `declarativeNetRequest` - пауза запросов ИИ-сайтов; `alarms` - раз в 30 секунд сверять состояние; `privacy` - настройка WebRTC по вашей кнопке; доступ к `127.0.0.1` на портах `47833`, `41833`, `35833`, `29833` - связь с приложением Kordon; доступ к ИИ-сайтам из списка - пауза их вкладок.
 
 ## Приложение Kordon
 
@@ -44,13 +44,13 @@ Updated 3 November 2026. Kordon is made by Efimov Dev (https://efimovdev.ru).
 
 The extension **does not collect, store or send your data anywhere**. It doesn't see what you type on websites, doesn't read your AI chats, keeps no history and has no analytics.
 
-- It asks the Kordon app on your computer (`http://127.0.0.1:47833`) whether your public IP is allowed right now. This request stays on your computer. The answer (protection state, current IP and country) is shown in the extension's popup.
+- It asks the Kordon app on your computer (`http://127.0.0.1:47833`, or the spare `41833`, `35833` and `29833` if that port is taken) whether your public IP is allowed right now. This request stays on your computer. The answer (protection state, current IP and country) is shown in the extension's popup.
 - When the app says the IP is wrong, it pauses tabs of the listed AI sites: blocks their requests with the browser's declarativeNetRequest rules and covers the page. It doesn't read or change page content.
 - It stores only your site list (which are off, which you added) in `chrome.storage.local` on your computer.
 - The WebRTC check, on your click, asks Kordon's STUN server (`stun.kordon.tech`, logs nothing), or Google's public one (`stun.l.google.com`) if it doesn't answer, which address the browser exposes, and compares it with your IP. The result is shown only to you.
 - "Close the leak", on your click, changes the browser's WebRTC setting (`webRTCIPHandlingPolicy`); "Undo" restores it.
 
-Permissions: `storage` (site list), `declarativeNetRequest` (pausing AI sites' requests), `alarms` (checking the state every 30 seconds), `privacy` (the WebRTC setting on your click), access to `127.0.0.1:47833` (the Kordon app) and to the listed AI sites (pausing their tabs).
+Permissions: `storage` (site list), `declarativeNetRequest` (pausing AI sites' requests), `alarms` (checking the state every 30 seconds), `privacy` (the WebRTC setting on your click), access to `127.0.0.1` on ports `47833`, `41833`, `35833`, `29833` (the Kordon app) and to the listed AI sites (pausing their tabs).
 
 ## The Kordon app
 
