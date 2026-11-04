@@ -12,6 +12,6 @@ Third-party components inside Kordon, under their own licenses:
   github.com/jchv/go-webview2 (MIT), github.com/jchv/go-winloader (ISC),
   golang.org/x/sys, golang.org/x/text and golang.org/x/image (BSD-3-Clause),
   github.com/gofrs/flock (BSD-3-Clause), github.com/godbus/dbus/v5 (BSD-2-Clause),
-  gopkg.in/yaml.v3 (MIT, Apache-2.0).
+  gopkg.in/yaml.v3 (MIT, Apache-2.0), rsc.io/qr (BSD-3-Clause).
 - Fonts Golos Text (Copyright 2019 The Golos Text Project Authors) and Unbounded
   (Copyright 2022 The Unbounded Project Authors), SIL Open Font License 1.1.
