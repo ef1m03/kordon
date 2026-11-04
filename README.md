@@ -4,12 +4,14 @@
 
 <h3 align="center">Kill switch для приложений. Отвалился VPN, сменился IP или пропал интернет - Kordon за долю секунды замораживает Claude, ChatGPT, Cursor и другие программы. Вернулся правильный IP - они продолжают работу как ни в чём не бывало. А пульт - у вас в Telegram.</h3>
 
+<p align="center"><b>Сайт Kordon: <a href="https://efimovdev.ru/kordon/">efimovdev.ru/kordon</a></b> - скачать, как работает, ответы на вопросы</p>
+
 <p align="center">
   <a href="https://github.com/ef1m03/kordon/releases/latest"><img src="https://img.shields.io/github/v/release/ef1m03/kordon?label=%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F" alt="версия"></a>
   <img src="https://img.shields.io/badge/macOS%20%C2%B7%20Windows%20%C2%B7%20Linux-555" alt="macOS, Windows, Linux">
   <a href="LICENSE"><img src="https://img.shields.io/badge/%D0%BB%D0%B8%D1%86%D0%B5%D0%BD%D0%B7%D0%B8%D1%8F-%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE-blue" alt="бесплатно"></a>
   <a href="#официальные-сборки-и-проверки"><img src="https://img.shields.io/badge/Mac-Developer%20ID-2ea043" alt="Mac: подписан Developer ID"></a>
-  <a href="#официальные-сборки-и-проверки"><img src="https://img.shields.io/badge/Kaspersky%20%C2%B7%20VirusTotal-%D1%87%D0%B8%D1%81%D1%82%D0%BE-2ea043" alt="Kaspersky и VirusTotal: чисто"></a>
+  <a href="#официальные-сборки-и-проверки"><img src="https://img.shields.io/badge/Kaspersky%20%C2%B7%20VirusTotal-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D1%8F%D0%B5%D1%82%D1%81%D1%8F-2ea043" alt="Kaspersky и VirusTotal: каждая сборка проверяется"></a>
 </p>
 
 <p align="center">
@@ -222,7 +224,7 @@ curl -fsSL https://raw.githubusercontent.com/ef1m03/kordon/main/scripts/install.
 
 ## Telegram: вход, пульт и уведомления
 
-Kordon бесплатный, и единственное, о чём мы просим, - один раз войти через бота [@kordon_security_bot](https://t.me/kordon_security_bot): кнопка «Войти через Telegram» в окне Kordon, потом «Старт» в боте. Telegram только на телефоне - в окне есть QR-код. Кто пользовался Kordon до этого, получает 3 дня на вход. **Защита работает и без входа**: программы под защитой встают на паузу как обычно, просто окно и панель ждут входа. На сервере без окна вход делает команда `kordon login`.
+Kordon бесплатный, и единственное, о чём мы просим, - один раз войти через бота [@kordon_security_bot](https://t.me/kordon_security_bot): кнопка «Войти через Telegram» в окне Kordon, потом «Старт» в боте. Telegram только на телефоне - в окне есть QR-код. Кто пользовался Kordon до версии 1.4.0, может войти до 6 ноября, 12:00 по Москве. **Защита работает и без входа**: программы под защитой встают на паузу как обычно, просто окно и панель ждут входа. На сервере без окна вход делает команда `kordon login`.
 
 Что даёт вход:
 

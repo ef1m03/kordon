@@ -2,12 +2,14 @@
 
 <h3 align="center">A kill switch for apps. Your VPN drops, your IP changes or the internet goes away - Kordon freezes Claude, ChatGPT, Cursor and other apps you chose within a fraction of a second. The right IP is back - they carry on as if nothing happened. And the remote is in your Telegram.</h3>
 
+<p align="center"><b>Kordon's site: <a href="https://efimovdev.ru/kordon/">efimovdev.ru/kordon</a></b> - download, how it works, questions answered</p>
+
 <p align="center">
   <a href="https://github.com/ef1m03/kordon/releases/latest"><img src="https://img.shields.io/github/v/release/ef1m03/kordon" alt="release"></a>
   <img src="https://img.shields.io/badge/macOS%20%C2%B7%20Windows%20%C2%B7%20Linux-555" alt="macOS, Windows, Linux">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-freeware-blue" alt="freeware"></a>
   <img src="https://img.shields.io/badge/Mac-Developer%20ID-2ea043" alt="Mac: Developer ID signed">
-  <img src="https://img.shields.io/badge/Kaspersky%20%C2%B7%20VirusTotal-clean-2ea043" alt="Kaspersky and VirusTotal: clean">
+  <img src="https://img.shields.io/badge/Kaspersky%20%C2%B7%20VirusTotal-checked-2ea043" alt="Kaspersky and VirusTotal: every build is checked">
   · <a href="README.md">Русский</a>
 </p>
 
