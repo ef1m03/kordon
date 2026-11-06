@@ -20,7 +20,7 @@ Kordon делает Efimov Dev (https://efimovdev.ru). Здесь описано
 
 ## Приложение Kordon
 
-Приложение работает у вас на компьютере. Чтобы знать ваш внешний IP, оно обращается к публичным сервисам (ipify, icanhazip, ident.me, checkip.amazonaws.com, ipinfo.io), узнаёт страну адреса (ipinfo.io и запасные) и через какой DNS вы ходите. Каждые 15 минут проверяет, вышла ли новая версия (`efimovdev.ru/kordon/api/latest`, без каких-либо данных; если не ответил - GitHub).
+Приложение работает у вас на компьютере. Чтобы знать ваш внешний IP, оно обращается к публичным сервисам (ipify, icanhazip, ident.me, checkip.amazonaws.com, ipinfo.io), узнаёт страну адреса (ipinfo.io, ipapi.co, api.country.is в выбранном порядке; ручная диагностика может сравнить все выбранные базы) и через какой DNS вы ходите. Каждые 15 минут проверяет, вышла ли новая версия (`efimovdev.ru/kordon/api/latest`, без каких-либо данных; если не ответил - GitHub).
 
 - **Вход через Telegram (обязателен):** чтобы пользоваться Kordon, нужно один раз войти через бота @kordon_security_bot. Наш сервер хранит номер чата, хеш секрета вашего Kordon и имя компьютера (чтобы в одном чате различать компьютеры). В этот чат приходят новости о новых версиях. Пока вы вошли, Kordon раз в 15 секунд сообщает серверу для пульта в Telegram: статус защиты, страну, названия программ под защитой, что делают агенты в терминале и итоги недели (сколько раз подводил VPN). IP-адресов там нет; сервер держит это только в памяти и забывает при перезапуске. Оттуда же Kordon забирает нажатые на пульте кнопки. Чтобы настройки переезжали на новый компьютер, сервер хранит для вашего чата последний профиль настроек: какие программы под защитой, разрешённые страны и переключатели. IP-адресов и домашних сетей в нём нет - Kordon их не отправляет, а сервер такой профиль не примет. Имени, телефона и адресов Kordon не передаёт. Выйти - `/stop` в боте, после этого Kordon попросит войти снова; защита при этом не выключается.
 - **Поддержка в боте:** если вы пишете в поддержку через бота, переписка (текст, а у фото и файлов - их номер в Telegram) хранится на нашем сервере как обращение, чтобы ни одно не потерялось. Видит её только разработчик Kordon. Закрытые обращения удаляются через 90 дней.
@@ -30,7 +30,7 @@ Kordon делает Efimov Dev (https://efimovdev.ru). Здесь описано
 - **Счётчика пользователей больше нет:** с входом через Telegram отдельный ежедневный пинг не нужен, новые версии его не отправляют.
 - **Уведомления о VPN в Telegram** (включены после входа, выключаются в панели): текст уведомления без адресов, только со страной, уходит через наш сервер боту @kordon_security_bot. Сервер хранит номер чата, хеш секрета вашего Kordon и имя компьютера (чтобы в одном чате различать уведомления с разных компьютеров); сами сообщения не хранятся. Кнопки под уведомлением («Пауза на час», «Разрешить этот IP») работают так: нажатие ждёт на сервере, пока ваш Kordon его заберёт, и сразу удаляется; после уведомления с кнопками Kordon полчаса спрашивает сервер, не нажата ли кнопка. Сами сообщения не хранятся.
 
-Настройки, журнал и статистика лежат только у вас на компьютере. Данные не продаются и не передаются третьим лицам.
+Полный журнал и подробная локальная статистика остаются на компьютере. Данные для пульта, переноса профиля и добровольной диагностики описаны отдельно. Данные не продаются и не передаются третьим лицам.
 
 Вопросы: Telegram [@efimov_dev](https://t.me/efimov_dev), https://efimovdev.ru
 
@@ -62,6 +62,18 @@ The app runs on your computer. To know your public IP it asks public services (i
 
 Only if you turn them on: the **user count** (once a day the version and OS, no IP, no install id; the server keeps no address log for it) and **VPN alerts in Telegram** (on after signing in, can be turned off; alert text without addresses, only the country, passed through our server to @kordon_security_bot; the server keeps the chat id, a hash of your Kordon's secret and the computer's name, not the messages; a pressed button under an alert waits on the server until your Kordon picks it up, and Kordon asks for it for half an hour after such an alert).
 
-Settings, logs and statistics stay on your computer. Data is not sold or shared with third parties.
+Full logs and detailed local statistics stay on your computer. Data used by the remote, profile transfer and voluntary diagnostics is described separately. Data is not sold or shared with third parties.
 
 Contact: Telegram [@efimov_dev](https://t.me/efimov_dev), https://efimovdev.ru
+
+## Проверка защиты и диагностика (готовится)
+
+Эти действия запускаете только вы. Проверка использует отдельный тестовый процесс и временный облачный счётчик: сессия действует 3 минуты, IP-адреса в ней не записываются. Рабочие приложения и настройки VPN не меняются.
+
+Перед отправкой диагностики Kordon показывает точный состав отчёта и просит подтвердить отправку. В отчёте только версия, система, коды состояния, счётчики и переключатели. Нет IP, имени компьютера, путей, названий программ, журнала, секретов и переписки. Отчёт связан с вашим входом через Telegram, доступен поддержке до 14 дней и может быть удалён вами раньше. Без подтверждения отчёт не отправляется.
+
+## Voluntary self-test and diagnostics (upcoming)
+
+Only your explicit action starts these features. A separate probe sends requests to a temporary cloud counter; its session expires after 3 minutes and request IP addresses are not stored. Your working apps and VPN configuration are unchanged.
+
+Before a diagnostic report is sent, Kordon displays its exact contents and asks for consent. Only version, system, state codes, counters and switches are included. No IP addresses, computer names, paths, app names, logs, secrets or conversations. Reports are associated with your Telegram sign-in, are available to support for up to 14 days, and can be deleted earlier by you. No report is sent without confirmation.
