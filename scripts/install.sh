@@ -4,8 +4,6 @@
 #   curl -fsSL https://raw.githubusercontent.com/ef1m03/kordon/main/scripts/install.sh | sh
 #   curl -fsSL https://raw.githubusercontent.com/ef1m03/kordon/main/scripts/install.sh | sh -s uninstall
 #
-# On macOS the app is downloaded with curl, so it carries no quarantine flag and
-# Gatekeeper doesn't block it although it isn't notarized (that costs $99/year).
 set -eu
 
 REPO="ef1m03/kordon"
@@ -52,7 +50,6 @@ mac() {
   mkdir -p "$dest"
   rm -rf "$dest/Kordon.app"
   ditto -x -k "$tmp/Kordon.zip" "$dest"
-  xattr -dr com.apple.quarantine "$dest/Kordon.app" 2>/dev/null || true
   open "$dest/Kordon.app"
   say "Готово: Kordon в $dest и уже в строке меню (зелёная точка рядом с часами)."
 }
