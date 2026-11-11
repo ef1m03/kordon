@@ -225,7 +225,7 @@ curl -fsSL https://raw.githubusercontent.com/ef1m03/kordon/main/scripts/install.
 - **Нужно приложение Kordon 1.3 или новее.** Расширение спрашивает у него статус на `127.0.0.1` и никуда больше не обращается. Без запущенного Kordon вкладки не защищены - значок расширения становится серым.
 - **Браузеры:** Chrome, Яндекс Браузер, Edge, Brave и другие на Chromium. Firefox - позже.
 
-Пока расширения нет в Chrome Web Store, его можно поставить вручную: скачайте `kordon-extension.zip` из [последнего релиза](https://github.com/ef1m03/kordon/releases/latest), распакуйте, откройте `chrome://extensions`, включите «Режим разработчика» и нажмите «Загрузить распакованное».
+**Установка:** [Kordon в Chrome Web Store](https://chromewebstore.google.com/detail/mgkfhibepmpnhgdcogihhpdbdjlagjce) - кнопка «Установить», обновляется само. Подходит для Chrome, Яндекс Браузера, Edge, Brave и Comet. Без магазина его можно поставить вручную: скачайте `kordon-extension.zip` из [последнего релиза](https://github.com/ef1m03/kordon/releases/latest), распакуйте, откройте `chrome://extensions`, включите «Режим разработчика» и нажмите «Загрузить распакованное». Если раньше ставили вручную, удалите старую копию, чтобы не было двух Kordon.
 
 ## Telegram: вход, пульт и уведомления
 
