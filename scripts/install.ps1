@@ -31,7 +31,10 @@ $base = 'https://github.com/ef1m03/kordon/releases/latest/download'
 $name = "kordon-windows-$arch.exe"
 New-Item -ItemType Directory -Force $dir | Out-Null
 Write-Host 'Скачиваю Kordon…'
-$tmp = Join-Path $env:TEMP "kordon-$PID.exe"
+# Download next to Kordon itself, not into %TEMP%: with a Cyrillic user name
+# TEMP can be a short 8.3 path (C:\Users\671~1\...) that doesn't resolve,
+# and the download fails (support 12.11.2026).
+$tmp = Join-Path $dir "kordon-$PID.download"
 $sumsFile = "$tmp.sums"
 # Defender (or another antivirus) may take the fresh, unsigned .exe away while
 # it's being saved or read: say what it is and what to do, not a red trace.
