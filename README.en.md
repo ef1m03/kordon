@@ -7,7 +7,7 @@
 <p align="center">
   <a href="https://github.com/ef1m03/kordon/releases/latest"><img src="https://img.shields.io/github/v/release/ef1m03/kordon" alt="release"></a>
   <img src="https://img.shields.io/badge/macOS%20%C2%B7%20Windows%20%C2%B7%20Linux-555" alt="macOS, Windows, Linux">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-freeware-blue" alt="freeware"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-proprietary-blue" alt="proprietary"></a>
   <img src="https://img.shields.io/badge/Mac-Developer%20ID-2ea043" alt="Mac: Developer ID signed">
   <img src="https://img.shields.io/badge/Kaspersky%20%C2%B7%20VirusTotal-checked-2ea043" alt="Kaspersky and VirusTotal: every build is checked">
   · <a href="README.md">Русский</a>
@@ -74,10 +74,10 @@
 - Pause, event history, a screen-sharing mode that hides the IP, hot-reloaded `config.yaml`.
 - **First start in two clicks**: the window asks whether the address is the VPN's and offers to protect AI apps that are already running.
 - **Browser extension**: pauses only Claude, ChatGPT, Gemini and other AI tabs, the rest of the browser keeps working; checks WebRTC leaks too. Needs Kordon 1.3+; install it from the [Chrome Web Store](https://chromewebstore.google.com/detail/mgkfhibepmpnhgdcogihhpdbdjlagjce) (it updates by itself), or by hand: `kordon-extension.zip` from the latest release, unpacked in developer mode.
-- **Telegram: sign in, remote and alerts.** Kordon is free; the one thing we ask is to sign in once with [@kordon_security_bot](https://t.me/kordon_security_bot) (a QR code for the phone is in the window; on a server - `kordon login`). Protection starts after you sign in with Telegram. Without signing in, Kordon does not pause or close apps, and its windows show the sign-in screen. In return: **"Claude Code is waiting for you"** when a terminal agent (Claude Code, Codex, Gemini CLI, Copilot CLI) went quiet while you're away; VPN alerts with buttons (pause for an hour, allow this IP or country); a **remote** mini app with all your computers, their status, how the VPN held up this week, the speed to the AI services, pause buttons and alert switches; a quiet "the VPN blinked" for short drops and `/notify` to choose which alerts come; a weekly report; settings that move to a new computer (never IP addresses or home networks). Sign-in is confirmed by a server-signed ticket valid for a week, so Kordon keeps working offline.
+- **Telegram: sign in, remote and alerts.** Sign in once with [@kordon_security_bot](https://t.me/kordon_security_bot) (a QR code for the phone is in the window; on a server - `kordon login`). Protection starts after you sign in with Telegram. Without signing in, Kordon does not pause or close apps, and its windows show the sign-in screen. In return: **"Claude Code is waiting for you"** when a terminal agent (Claude Code, Codex, Gemini CLI, Copilot CLI) went quiet while you're away; VPN alerts with buttons (pause for an hour, allow this IP or country); a **remote** mini app with all your computers, their status, how the VPN held up this week, the speed to the AI services, pause buttons and alert switches; a quiet "the VPN blinked" for short drops and `/notify` to choose which alerts come; a weekly report; settings that move to a new computer (never IP addresses or home networks). Sign-in is confirmed by a server-signed ticket valid for a week, so Kordon keeps working offline.
 - **The route to the AI services themselves**: some VPNs send certain domains around the tunnel. Kordon asks `api.anthropic.com`, `chatgpt.com` and others which address they see, and pauses the app if it isn't allowed - even when the "general" IP is right.
 - **Leak check** in the panel: every IP service on its own, IPv6, DNS country, and the address of programs that ignore the system proxy.
-- No admin rights, free. Mac releases require Apple Developer ID signing and successful Apple notarization before publication; every build is scanned by VirusTotal and Kaspersky before release (results in the release notes) and the tray window is started on a real Windows before every release.
+- No admin rights. Mac releases require Apple Developer ID signing and successful Apple notarization before publication; every build is scanned by VirusTotal and Kaspersky before release (results in the release notes) and the tray window is started on a real Windows before every release.
 
 ## Install
 
@@ -134,4 +134,4 @@ Not covered, honestly: Kordon works at the app level, not the network level - th
 ---
 
 <p align="center">© <a href="https://efimovdev.ru/?utm_source=kordon&utm_medium=github"><b>Efimov Dev</b></a> - <a href="https://kordon.tech/?utm_source=kordon&utm_medium=github">efimovdev.ru</a>. Found a bug or have an idea? <a href="https://t.me/kordon_security_bot?start=support">Contact Kordon support on Telegram</a>.<br>
-Kordon is free, closed-source software (<a href="LICENSE">license</a>; versions 1.0.0-1.2.1 were MIT, 1.2.2 GPL-3.0). The name and logo belong to Efimov Dev; official builds only from <a href="https://github.com/ef1m03/kordon/releases">Releases</a>.</p>
+Kordon is closed-source software, used under its <a href="https://kordon.tech/en/terms/">licence agreement</a> (<a href="LICENSE">license</a>; versions 1.0.0-1.2.1 were MIT, 1.2.2 GPL-3.0). The name and logo belong to Efimov Dev; official builds only from <a href="https://github.com/ef1m03/kordon/releases">Releases</a>.</p>

@@ -1,16 +1,17 @@
 Лицензия Kordon (English below)
 © 2026 Efimov Dev - https://efimovdev.ru. Все права защищены.
 
-Kordon - бесплатная программа с закрытым исходным кодом.
+Kordon - программа с закрытым исходным кодом. Право пользоваться ею даёт лицензионный
+договор-оферта: https://kordon.tech/terms/ - там тарифы, сроки, число компьютеров,
+пробный период и всё остальное. Пользуясь Kordon, вы принимаете эти условия.
 
 Можно:
 - скачивать Kordon с https://github.com/ef1m03/kordon/releases (или строкой установки
-  из README), ставить на любое число своих компьютеров и пользоваться бесплатно, в том
-  числе в работе и в компании;
+  из README) и пользоваться им на условиях оферты и выбранного тарифа;
 - делиться ссылкой на официальную страницу.
 
 Нельзя без письменного разрешения Efimov Dev:
-- продавать Kordon или брать деньги за доступ к нему;
+- продавать, сдавать в аренду или перепродавать Kordon и доступ к нему;
 - распространять изменённые сборки или выкладывать файлы Kordon в другом месте;
 - декомпилировать, дизассемблировать или иначе восстанавливать исходный код, кроме
   случаев, когда это прямо разрешено законом;
@@ -31,14 +32,16 @@ GPL-3.0 для 1.2.2 и опубликованного кода). Эта лиц�
 Kordon license
 © 2026 Efimov Dev - https://efimovdev.ru. All rights reserved.
 
-Kordon is free, closed-source software.
+Kordon is closed-source software. The right to use it is given by the licence agreement
+(public offer): https://kordon.tech/en/terms/ - plans, terms, number of computers, the trial
+and the rest. By using Kordon you accept these terms.
 
 You may download Kordon from https://github.com/ef1m03/kordon/releases (or with the install
-line from the README), install it on any number of your computers and use it for free,
-including at work and in a company, and share the link to the official page.
+line from the README), use it under the offer and your plan, and share the link to the
+official page.
 
-Without written permission from Efimov Dev you may not sell Kordon or charge for access to
-it; distribute modified builds or host Kordon's files elsewhere; decompile, disassemble or
+Without written permission from Efimov Dev you may not sell, rent out or resell Kordon or
+access to it; distribute modified builds or host Kordon's files elsewhere; decompile, disassemble or
 otherwise reconstruct its source code except where the law expressly allows it; or use the
 name "Kordon" and its logo for your product.
 

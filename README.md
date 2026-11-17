@@ -9,7 +9,7 @@
 <p align="center">
   <a href="https://github.com/ef1m03/kordon/releases/latest"><img src="https://img.shields.io/github/v/release/ef1m03/kordon?label=%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F" alt="версия"></a>
   <img src="https://img.shields.io/badge/macOS%20%C2%B7%20Windows%20%C2%B7%20Linux-555" alt="macOS, Windows, Linux">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/%D0%BB%D0%B8%D1%86%D0%B5%D0%BD%D0%B7%D0%B8%D1%8F-%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE-blue" alt="бесплатно"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/%D0%BB%D0%B8%D1%86%D0%B5%D0%BD%D0%B7%D0%B8%D1%8F-%D0%BE%D1%84%D0%B5%D1%80%D1%82%D0%B0-blue" alt="лицензия: оферта"></a>
   <a href="#официальные-сборки-и-проверки"><img src="https://img.shields.io/badge/Mac-Developer%20ID-2ea043" alt="Mac: подписан Developer ID"></a>
   <a href="#официальные-сборки-и-проверки"><img src="https://img.shields.io/badge/Kaspersky%20%C2%B7%20VirusTotal-%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%80%D1%8F%D0%B5%D1%82%D1%81%D1%8F-2ea043" alt="Kaspersky и VirusTotal: каждая сборка проверяется"></a>
 </p>
@@ -57,7 +57,6 @@
 | Один и тот же инструмент на Mac, Windows и Linux | ❌ | ❌ у каждой системы свой | ✅ |
 | Видит, если VPN тихо пускает ИИ-сервис мимо туннеля | ❌ | ❌ | ✅ спрашивает сам сервис |
 | Пульт и уведомления с телефона | ❌ | ❌ | ✅ в Telegram |
-| Бесплатно | зависит | ✅ | ✅ |
 | Каждая сборка проверена антивирусами, результаты открыты | ❌ | - | ✅ |
 
 Коротко, чем он хорош:
@@ -101,7 +100,7 @@
 - **История событий** в панели, журнал в файле.
 - **«Сообщить о проблеме»** открывает заявку на GitHub с уже подставленной версией, системой и концом журнала. Все IP и MAC-адреса в нём заранее скрыты.
 - **Режим для созвонов:** рядом со значком можно показывать только страну или ничего, чтобы IP не светился при показе экрана.
-- **Без прав администратора**, без слежки, бесплатно.
+- **Без прав администратора** и без слежки.
 
 ## Как это работает
 
@@ -229,7 +228,7 @@ curl -fsSL https://raw.githubusercontent.com/ef1m03/kordon/main/scripts/install.
 
 ## Telegram: вход, пульт и уведомления
 
-Kordon бесплатный, и единственное, о чём мы просим, - один раз войти через бота [@kordon_security_bot](https://t.me/kordon_security_bot): кнопка «Войти через Telegram» в окне Kordon, потом «Старт» в боте. Telegram только на телефоне - в окне есть QR-код. **Защита включается после входа через Telegram.** Без входа Kordon не ставит программы на паузу и не закрывает их, а окно и панель показывают экран входа. На сервере без окна вход делает команда `kordon login`.
+Один раз войдите через бота [@kordon_security_bot](https://t.me/kordon_security_bot): кнопка «Войти через Telegram» в окне Kordon, потом «Старт» в боте. Telegram только на телефоне - в окне есть QR-код. **Защита включается после входа через Telegram.** Без входа Kordon не ставит программы на паузу и не закрывает их, а окно и панель показывают экран входа. На сервере без окна вход делает команда `kordon login`.
 
 Что даёт вход:
 
@@ -455,7 +454,7 @@ Kordon замораживает и закрывает чужие процесс�
 
 Логотипы программ в панели - [Simple Icons](https://simpleicons.org) (CC0); товарные знаки принадлежат их владельцам и лишь называют программы, которые защищает Kordon.
 
-Kordon - **бесплатная программа**: ставьте на сколько угодно своих компьютеров и пользуйтесь, в том числе на работе. Исходный код закрыт: продавать Kordon, распространять изменённые сборки и выдавать за своё нельзя. Название и логотип принадлежат Efimov Dev. Полный текст - в [LICENSE](LICENSE).
+Kordon - программа с закрытым исходным кодом, пользоваться ею можно по [лицензионному договору-оферте](https://kordon.tech/terms/) и выбранному тарифу ([тарифы](https://kordon.tech/help/plans/)): продавать Kordon, распространять изменённые сборки и выдавать за своё нельзя. Название и логотип принадлежат Efimov Dev. Полный текст - в [LICENSE](LICENSE).
 
 Версии 1.0.0-1.2.1 вышли под MIT, 1.2.2 - под GPL-3.0; для них так и остаётся.
 
@@ -492,7 +491,7 @@ Windows (PowerShell):
 <p align="center">
   © <a href="https://efimovdev.ru/?utm_source=kordon&utm_medium=github"><b>Efimov Dev</b></a> - <a href="https://kordon.tech/?utm_source=kordon&utm_medium=github">efimovdev.ru</a><br>
   Нашли ошибку или есть идея - напишите в <a href="https://t.me/kordon_security_bot?start=support"><b>поддержку Kordon в Telegram</b></a>.<br>
-  Бесплатная программа, <a href="LICENSE">лицензия</a>. Название и логотип Kordon принадлежат Efimov Dev.
+  <a href="LICENSE">Лицензия</a> и <a href="https://kordon.tech/terms/">оферта</a>. Название и логотип Kordon принадлежат Efimov Dev.
 </p>
 
 ### Источники страны IP
