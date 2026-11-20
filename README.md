@@ -4,7 +4,7 @@
 
 <h3 align="center">Kill switch для приложений. Отвалился VPN, сменился IP или пропал интернет - Kordon за долю секунды замораживает Claude, ChatGPT, Cursor и другие программы. Вернулся правильный IP - они продолжают работу как ни в чём не бывало. А пульт - у вас в Telegram.</h3>
 
-<p align="center"><b>Сайт Kordon: <a href="https://kordon.tech/">kordon.tech</a></b> - скачать, как работает, ответы на вопросы</p>
+<p align="center"><b><a href="https://efimovdev.ru/kordon/">Сайт Kordon</a></b> - скачать, как работает, ответы на вопросы</p>
 
 <p align="center">
   <a href="https://github.com/ef1m03/kordon/releases/latest"><img src="https://img.shields.io/github/v/release/ef1m03/kordon?label=%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F" alt="версия"></a>
@@ -454,7 +454,7 @@ Kordon замораживает и закрывает чужие процесс�
 
 Логотипы программ в панели - [Simple Icons](https://simpleicons.org) (CC0); товарные знаки принадлежат их владельцам и лишь называют программы, которые защищает Kordon.
 
-Kordon - программа с закрытым исходным кодом, пользоваться ею можно по [лицензионному договору-оферте](https://kordon.tech/terms/) и выбранному тарифу ([тарифы](https://kordon.tech/help/plans/)): продавать Kordon, распространять изменённые сборки и выдавать за своё нельзя. Название и логотип принадлежат Efimov Dev. Полный текст - в [LICENSE](LICENSE).
+Kordon - программа с закрытым исходным кодом, пользоваться ею можно по [лицензионному договору-оферте](https://efimovdev.ru/kordon/terms/) и выбранному тарифу ([тарифы](https://efimovdev.ru/kordon/help/plans/)): продавать Kordon, распространять изменённые сборки и выдавать за своё нельзя. Название и логотип принадлежат Efimov Dev. Полный текст - в [LICENSE](LICENSE).
 
 Версии 1.0.0-1.2.1 вышли под MIT, 1.2.2 - под GPL-3.0; для них так и остаётся.
 
@@ -489,9 +489,9 @@ Windows (PowerShell):
 ---
 
 <p align="center">
-  © <a href="https://efimovdev.ru/?utm_source=kordon&utm_medium=github"><b>Efimov Dev</b></a> - <a href="https://kordon.tech/?utm_source=kordon&utm_medium=github">efimovdev.ru</a><br>
+  © <a href="https://efimovdev.ru/?utm_source=kordon&utm_medium=github"><b>Efimov Dev</b></a> - <a href="https://efimovdev.ru/kordon/?utm_source=kordon&utm_medium=github">Сайт Kordon</a><br>
   Нашли ошибку или есть идея - напишите в <a href="https://t.me/kordon_security_bot?start=support"><b>поддержку Kordon в Telegram</b></a>.<br>
-  <a href="LICENSE">Лицензия</a> и <a href="https://kordon.tech/terms/">оферта</a>. Название и логотип Kordon принадлежат Efimov Dev.
+  <a href="LICENSE">Лицензия</a> и <a href="https://efimovdev.ru/kordon/terms/">оферта</a>. Название и логотип Kordon принадлежат Efimov Dev.
 </p>
 
 ### Источники страны IP

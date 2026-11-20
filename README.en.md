@@ -2,7 +2,7 @@
 
 <h3 align="center">A kill switch for apps. Your VPN drops, your IP changes or the internet goes away - Kordon freezes Claude, ChatGPT, Cursor and other apps you chose within a fraction of a second. The right IP is back - they carry on as if nothing happened. And the remote is in your Telegram.</h3>
 
-<p align="center"><b>Kordon's site: <a href="https://kordon.tech/en/">kordon.tech</a></b> - download, how it works, questions answered</p>
+<p align="center"><b><a href="https://efimovdev.ru/kordon/en/">Kordon's site</a></b> - download, how it works, questions answered</p>
 
 <p align="center">
   <a href="https://github.com/ef1m03/kordon/releases/latest"><img src="https://img.shields.io/github/v/release/ef1m03/kordon" alt="release"></a>
@@ -133,5 +133,5 @@ Not covered, honestly: Kordon works at the app level, not the network level - th
 
 ---
 
-<p align="center">© <a href="https://efimovdev.ru/?utm_source=kordon&utm_medium=github"><b>Efimov Dev</b></a> - <a href="https://kordon.tech/?utm_source=kordon&utm_medium=github">efimovdev.ru</a>. Found a bug or have an idea? <a href="https://t.me/kordon_security_bot?start=support">Contact Kordon support on Telegram</a>.<br>
-Kordon is closed-source software, used under its <a href="https://kordon.tech/en/terms/">licence agreement</a> (<a href="LICENSE">license</a>; versions 1.0.0-1.2.1 were MIT, 1.2.2 GPL-3.0). The name and logo belong to Efimov Dev; official builds only from <a href="https://github.com/ef1m03/kordon/releases">Releases</a>.</p>
+<p align="center">© <a href="https://efimovdev.ru/?utm_source=kordon&utm_medium=github"><b>Efimov Dev</b></a> - <a href="https://efimovdev.ru/kordon/en/?utm_source=kordon&utm_medium=github">Kordon's site</a>. Found a bug or have an idea? <a href="https://t.me/kordon_security_bot?start=support">Contact Kordon support on Telegram</a>.<br>
+Kordon is closed-source software, used under its <a href="https://efimovdev.ru/kordon/en/terms/">licence agreement</a> (<a href="LICENSE">license</a>; versions 1.0.0-1.2.1 were MIT, 1.2.2 GPL-3.0). The name and logo belong to Efimov Dev; official builds only from <a href="https://github.com/ef1m03/kordon/releases">Releases</a>.</p>
