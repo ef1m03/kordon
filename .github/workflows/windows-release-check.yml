@@ -1,0 +1,66 @@
+name: Verify Kordon 1.6.1 on Windows
+on:
+  push:
+    branches: [check/windows-1.6.1]
+permissions:
+  contents: write
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - name: Retrieve and verify signed release files
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download v1.6.1 --repo ef1m03/kordon --pattern transfer.json
+          if ($LASTEXITCODE -ne 0) { throw "Transfer metadata unavailable" }
+          $urls = Get-Content -Raw transfer.json | ConvertFrom-Json -AsHashtable
+          $hashes = '{"Kordon-macos.zip":"c6e543c0d7bb2bb5e2854be823cdfad9779d5164f0f09a1f1e856ccc959d4a3f","install.ps1":"49b3334a9de5febb4775c1676fbeacbbcebccbc0755e1b67786714411b6b4194","install.sh":"a29e0a2e94cb786dc68ed0b52afce87be931cb4502dddbb463e8a7031f2dd701","kordon-extension.zip":"d96bdb248cb161fa7af3d812dabda97f499ed050c12557c58b39ed83ef0b4de8","kordon-linux-amd64.tar.gz":"1430961ed04ccdf3960e1cdca6d11e9f3bf2e81a93be2173d441097e8fe9d5f9","kordon-linux-arm64.tar.gz":"261e3ed71750a2eb57a6a13d51aab55eaef048999bbd26e3a6c85aea2aa68ba0","kordon-windows-amd64.exe":"0a02902df9dd4d824b9d6892ea8b0507357f3fafd3b9593686fb028deb5cb99a","kordon-windows-arm64.exe":"3cdd1a40083355ec1d0477bc9173772a176f84b0b6d37d382fc2e270289ef54f","SHA256SUMS.txt":"cf1177f27faab3dad606e6f2a6eb00fa895ee45bcb4304f0fe31fc9b64bb5279","SHA256SUMS.txt.sig":"e1d6fca4466ed1f0ab35049463a25aa0cef0d6880a6ead0321ab264369a97f93"}' | ConvertFrom-Json -AsHashtable
+          if ($urls.Count -ne $hashes.Count) { throw "Unexpected file count" }
+          foreach ($name in $hashes.Keys) {
+            $uri = [Uri]$urls[$name]
+            if ($uri.Scheme -ne "https" -or $uri.Host -ne "release-assets.githubusercontent.com") { throw "Unexpected asset host" }
+            try { Invoke-WebRequest -Uri $uri -OutFile $name -ErrorAction Stop }
+            catch { throw "Download failed for $name" }
+            if ((Get-FileHash $name).Hash -ne $hashes[$name]) { throw "Checksum mismatch for $name" }
+          }
+          Remove-Item transfer.json
+      - name: Start Kordon and open the tray window
+        shell: pwsh
+        run: |
+          $exe = (Resolve-Path kordon-windows-amd64.exe).Path
+          $env:KORDON_DIR = Join-Path $env:RUNNER_TEMP "kordon-test"
+          New-Item -ItemType Directory $env:KORDON_DIR | Out-Null
+          Set-Content (Join-Path $env:KORDON_DIR "config.yaml") "apps: []"
+          $worker = Start-Process $exe -ArgumentList "headless" -PassThru
+          try {
+            $info = Join-Path $env:KORDON_DIR "panel.json"
+            for ($i = 0; $i -lt 30 -and -not (Test-Path $info); $i++) { Start-Sleep 1 }
+            if (-not (Test-Path $info)) { throw "Panel did not start" }
+            $start = [Diagnostics.ProcessStartInfo]::new($exe, "popover")
+            $start.UseShellExecute = $false
+            $start.RedirectStandardInput = $true
+            $start.RedirectStandardOutput = $true
+            $window = [Diagnostics.Process]::Start($start)
+            $window.StandardInput.WriteLine("show")
+            $window.StandardInput.Flush()
+            $answer = $window.StandardOutput.ReadLineAsync()
+            if (-not $answer.Wait(25000)) {
+              $window.StandardInput.WriteLine("show")
+              $window.StandardInput.Flush()
+            }
+            if (-not $answer.Wait(20000) -or $answer.Result -ne "ready") { throw "Tray window did not load" }
+          } finally {
+            if ($window -and -not $window.HasExited) { $window.Kill() }
+            if (-not $worker.HasExited) { $worker.Kill() }
+          }
+      - name: Upload verified files to the draft release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $files = @('install.sh','install.ps1','kordon-extension.zip','Kordon-macos.zip','kordon-windows-amd64.exe','kordon-windows-arm64.exe','kordon-linux-amd64.tar.gz','kordon-linux-arm64.tar.gz','SHA256SUMS.txt','SHA256SUMS.txt.sig')
+          gh release upload v1.6.1 @files --repo ef1m03/kordon
+          if ($LASTEXITCODE -ne 0) { throw "Draft upload failed" }
