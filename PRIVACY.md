@@ -86,13 +86,13 @@ Only your explicit action starts these features. A separate probe sends requests
 
 Before a diagnostic report is sent, Kordon displays its exact contents and asks for consent. Only version, system, state codes, counters and switches are included. No IP addresses, computer names, paths, app names, logs, secrets or conversations. Reports are associated with your Telegram sign-in, are available to support for up to 14 days, and can be deleted earlier by you. No report is sent without confirmation.
 
-## Сайт kordon.tech
+## Сайт [efimovdev.ru/kordon](https://efimovdev.ru/kordon)
 
 Данные сайта учитываются отдельно от приложения и расширения. На публичном лендинге используется Яндекс Метрика, счётчик 109687776, без Вебвизора. Она учитывает посещения и действия со ссылками скачивания, демонстрацией и поддержкой. Данные обрабатываются Яндексом по его условиям; Метрика не встроена в Kordon или расширение.
 
 Собственный счётчик сайта использует случайный cookie `kordon_visit` на 24 часа. Журнал хранится до 3 суток: время, псевдоним, страница, категория источника и допустимые метки кампании. IP, User-Agent и полный адрес страницы-источника в этот журнал не записываются. В статистику до 400 дней попадают только агрегаты без cookie. Скачивание и открытие лендинга не связываются с аккаунтом Telegram.
 
-## Website kordon.tech
+## Website [efimovdev.ru/kordon](https://efimovdev.ru/kordon)
 
 Website data is separate from application and extension data. The public landing page uses Yandex Metrica counter 109687776 with session replay disabled to measure visits, download links, demo use and support links. Yandex processes this data under its terms. Metrica is not included in the Kordon application or extension.
 
