@@ -1,8 +1,8 @@
 #!/bin/sh
 # Kordon installer for macOS and Linux.
 #
-#   curl -fL --connect-timeout 10 --max-time 30 --retry 2 https://raw.githubusercontent.com/ef1m03/kordon/main/scripts/install.sh | sh
-#   curl -fL --connect-timeout 10 --max-time 30 --retry 2 https://raw.githubusercontent.com/ef1m03/kordon/main/scripts/install.sh | sh -s uninstall
+#   curl -fsSL https://raw.githubusercontent.com/ef1m03/kordon/main/scripts/install.sh | sh
+#   curl -fsSL https://raw.githubusercontent.com/ef1m03/kordon/main/scripts/install.sh | sh -s uninstall
 #
 set -eu
 
@@ -12,27 +12,11 @@ ACTION="${1:-install}"
 
 say() { printf '\033[1m%s\033[0m\n' "$*"; }
 
-download() {
-  say "Скачиваю $1…"
-  for attempt in 1 2 3; do
-    say "Попытка $attempt из 3"
-    if curl -q --fail --location --progress-bar --show-error --connect-timeout 10 \
-      --max-time "$3" --speed-limit 1 --speed-time 20 -o "$2" "$BASE/$1"; then
-      return 0
-    fi
-    rm -f "$2"
-    if [ "$attempt" -lt 3 ]; then sleep "$attempt"; fi
-  done
-  printf '%s\n' "Не удалось скачать $1. Проверьте соединение с GitHub и повторите команду установки." >&2
-  return 1
-}
-
 # verify FILE NAME: compares FILE with the NAME line of the release's SHA256SUMS.txt,
 # so a file damaged or swapped on the way is never installed.
 verify() {
-  download SHA256SUMS.txt "$1.sums" 20
-  say "Проверяю контрольную сумму…"
-  want="$(awk -v name="$2" '$2 == name { print $1 }' "$1.sums")"
+  curl -fsSL "$BASE/SHA256SUMS.txt" -o "$1.sums"
+  want="$(grep "  $2\$" "$1.sums" | cut -d' ' -f1)"
   if command -v sha256sum >/dev/null 2>&1; then got="$(sha256sum "$1" | cut -d' ' -f1)"
   else got="$(shasum -a 256 "$1" | cut -d' ' -f1)"; fi
   if [ -z "$want" ] || [ "$want" != "$got" ]; then
@@ -59,9 +43,8 @@ mac() {
   fi
   tmp="$(mktemp -d)"
   trap 'rm -rf "$tmp"' EXIT
-  trap 'exit 130' INT
-  trap 'exit 143' TERM
-  download Kordon-macos.zip "$tmp/Kordon.zip" 90
+  say "Скачиваю Kordon…"
+  curl -fsSL "$BASE/Kordon-macos.zip" -o "$tmp/Kordon.zip"
   verify "$tmp/Kordon.zip" Kordon-macos.zip
   stop_running
   mkdir -p "$dest"
@@ -84,14 +67,13 @@ linux() {
     aarch64 | arm64) arch=arm64 ;;
     *) echo "Неподдерживаемая архитектура: $(uname -m)" >&2; exit 1 ;;
   esac
+  mkdir -p "$bin"
   tmp="$(mktemp -d)"
   trap 'rm -rf "$tmp"' EXIT
-  trap 'exit 130' INT
-  trap 'exit 143' TERM
-  download "kordon-linux-$arch.tar.gz" "$tmp/kordon.tar.gz" 90
+  say "Скачиваю Kordon…"
+  curl -fsSL "$BASE/kordon-linux-$arch.tar.gz" -o "$tmp/kordon.tar.gz"
   verify "$tmp/kordon.tar.gz" "kordon-linux-$arch.tar.gz"
   stop_running
-  mkdir -p "$bin"
   tar -xzf "$tmp/kordon.tar.gz" -C "$bin" kordon
   chmod +x "$bin/kordon"
   "$bin/kordon" autostart on
